@@ -127,6 +127,13 @@ def hello():
         'album' : album
     }
     return render_template('index.html', **templateData)
+    
+@app.route("/settings")
+def settings():
+    templateData = {
+        'title' = "Einstellungen"
+    }
+    return render_template('settings.html', **templateData)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
