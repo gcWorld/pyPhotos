@@ -1,1 +1,11 @@
-html
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta name="mobile-web-app-capable" content="yes">
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <footer class="footer"><span class="time" id="date"></span><span class="album">{{album}}</span><span class="date">{{date}}</span></footer>
+        <script src="{{ url_for('static', filename='js/jquery-2.0.1.min.js') }}"></script>
+    </body>
+</html>
