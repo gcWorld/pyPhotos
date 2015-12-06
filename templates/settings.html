@@ -6,11 +6,12 @@
         <link href="{{ url_for('static', filename='css/settings.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <div class="container">
         <form class="form-horizontal">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>{{title}}</legend>
 
 <!-- Text input-->
 <div class="form-group">
@@ -31,6 +32,7 @@
 
 </fieldset>
 </form>
+</div>
 
         <footer class="footer"><span class="time" id="date"></span><span class="album">{{album}}</span><span class="date">{{date}}</span></footer>
         <script src="{{ url_for('static', filename='js/jquery-2.0.1.min.js') }}"></script>
