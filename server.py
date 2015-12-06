@@ -131,7 +131,7 @@ def hello():
 @app.route("/settings")
 def settings():
     templateData = {
-        'title' = "Einstellungen"
+        'title' : "Einstellungen"
     }
     return render_template('settings.html', **templateData)
 
