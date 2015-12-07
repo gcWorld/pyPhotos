@@ -142,7 +142,8 @@ def settings():
     #    config.write(configfile)
     templateData = {
         'title' : "Einstellungen",
-        'refreshtime' : config['General']['refreshtime']
+        'refreshtime' : config['General']['refreshtime'],
+        'specialdates' : config['General']['specialdates']
     }
     return render_template('settings.html', **templateData)
 
