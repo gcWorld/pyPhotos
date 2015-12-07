@@ -139,22 +139,22 @@ def settings():
     if request.method == 'POST':
         return "Einstellungen gespeichert"
     else:
-    #config.add_section('General')
-    #config.set('General', 'refreshtime', '30')
-    # Writing our configuration file to 'example.cfg'
-    #with open('settings.cfg', 'w') as configfile:
-    #    config.write(configfile)
-    specialdates_checked = ""
-    if config['General']['specialdates']:
-        specialdates_checked = "checked='checked'"
-    
-    templateData = {
-        'title' : "Einstellungen",
-        'refreshtime' : config['General']['refreshtime'],
-        'specialdates' : config['General']['specialdates'],
-        'specialdates_checked' : specialdates_checked
-    }
-    return render_template('settings.html', **templateData)
+        #config.add_section('General')
+        #config.set('General', 'refreshtime', '30')
+        # Writing our configuration file to 'example.cfg'
+        #with open('settings.cfg', 'w') as configfile:
+        #    config.write(configfile)
+        specialdates_checked = ""
+        if config['General']['specialdates']:
+            specialdates_checked = "checked='checked'"
+        
+        templateData = {
+            'title' : "Einstellungen",
+            'refreshtime' : config['General']['refreshtime'],
+            'specialdates' : config['General']['specialdates'],
+            'specialdates_checked' : specialdates_checked
+        }
+        return render_template('settings.html', **templateData)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
