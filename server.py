@@ -141,6 +141,7 @@ def settings():
         config.set('General', 'refreshtime', refreshtime)
         with open('settings.cfg', 'w') as configfile:
             config.write(configfile)
+        templateData = {}
         return render_template('settings-done.html', **templateData)
     else:
         #config.add_section('General')
