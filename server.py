@@ -126,7 +126,8 @@ def hello():
         'date' : date,
         'bg' : urllib.parse.urlparse(bg).geturl(),
         #'bg' : 'static/images/weihnachten/DSC_0338.JPG',
-        'images' : str(picNum)+'/'+str(picLen)+' '+bg,
+        #'images' : str(picNum)+'/'+str(picLen)+' '+bg,
+        'images' : "",
         'refreshtime' : REFRESH_TIME,
         'album' : album
     }
