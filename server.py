@@ -8,9 +8,10 @@ import configparser
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
+config.read('settings.cfg')
 
 ## Variable definition
-REFRESH_TIME='30' #in seconds
+REFRESH_TIME=config['General']['refreshtime'] #in seconds
 
 currentfolder = ""
 bg = ""
@@ -134,14 +135,14 @@ def hello():
 @app.route("/settings")
 def settings():
     global config
-    config.add_section('General')
-    config.set('General', 'refreshtime', '30')
+    #config.add_section('General')
+    #config.set('General', 'refreshtime', '30')
     # Writing our configuration file to 'example.cfg'
-    with open('settings.cfg', 'w') as configfile:
-        config.write(configfile)
+    #with open('settings.cfg', 'w') as configfile:
+    #    config.write(configfile)
     templateData = {
         'title' : "Einstellungen"
-        #'refreshtime' : config['refreshtime']
+        'refreshtime' : config['General']['refreshtime']
     }
     return render_template('settings.html', **templateData)
 
