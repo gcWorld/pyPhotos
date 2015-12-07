@@ -148,7 +148,7 @@ def settings():
         'title' : "Einstellungen",
         'refreshtime' : config['General']['refreshtime'],
         'specialdates' : config['General']['specialdates'],
-        specialdates_checked : specialdates_checked
+        'specialdates_checked' : specialdates_checked
     }
     return render_template('settings.html', **templateData)
 
