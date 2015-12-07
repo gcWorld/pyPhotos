@@ -140,10 +140,15 @@ def settings():
     # Writing our configuration file to 'example.cfg'
     #with open('settings.cfg', 'w') as configfile:
     #    config.write(configfile)
+    specialdates_checked = ""
+    if config['General']['specialdates']:
+        specialdates_checked = "checked='checked'"
+    
     templateData = {
         'title' : "Einstellungen",
         'refreshtime' : config['General']['refreshtime'],
-        'specialdates' : config['General']['specialdates']
+        'specialdates' : config['General']['specialdates'],
+        specialdates_checked : specialdates_checked
     }
     return render_template('settings.html', **templateData)
 
