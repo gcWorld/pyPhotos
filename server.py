@@ -4,7 +4,7 @@ import random
 import string
 import urllib
 from itertools import cycle
-import yaml
+import configparser
 app = Flask(__name__)
 
 ## Variable definition
@@ -131,10 +131,14 @@ def hello():
     
 @app.route("/settings")
 def settings():
-    config = yaml.safe_load(open("settings.yml"))
+    config.add_section('General')
+    config.set('Section1', 'refreshtime', '30')
+    # Writing our configuration file to 'example.cfg'
+    with open('settings.cfg', 'wb') as configfile:
+        config.write(configfile)
     templateData = {
-        'title' : "Einstellungen",
-        'refreshtime' : config['refreshtime']
+        'title' : "Einstellungen"
+        #'refreshtime' : config['refreshtime']
     }
     return render_template('settings.html', **templateData)
 
