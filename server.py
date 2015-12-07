@@ -135,7 +135,7 @@ def hello():
 def settings():
     global config
     config.add_section('General')
-    config.set('Section1', 'refreshtime', '30')
+    config.set('General', 'refreshtime', '30')
     # Writing our configuration file to 'example.cfg'
     with open('settings.cfg', 'wb') as configfile:
         config.write(configfile)
