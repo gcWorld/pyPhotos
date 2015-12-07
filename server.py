@@ -7,6 +7,8 @@ from itertools import cycle
 import configparser
 app = Flask(__name__)
 
+config = configparser.RawConfigParser()
+
 ## Variable definition
 REFRESH_TIME='30' #in seconds
 
@@ -131,6 +133,7 @@ def hello():
     
 @app.route("/settings")
 def settings():
+    global config
     config.add_section('General')
     config.set('Section1', 'refreshtime', '30')
     # Writing our configuration file to 'example.cfg'
