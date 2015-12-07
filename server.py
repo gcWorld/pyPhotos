@@ -137,7 +137,8 @@ def hello():
 def settings():
     global config
     if request.method == 'POST':
-        return "Einstellungen gespeichert"
+        refreshtime = request.form['refreshtime']
+        return "Einstellungen gespeichert: refresh time="+refreshtime
     else:
         #config.add_section('General')
         #config.set('General', 'refreshtime', '30')
