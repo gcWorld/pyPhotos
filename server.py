@@ -133,9 +133,12 @@ def hello():
     }
     return render_template('index.html', **templateData)
     
-@app.route("/settings")
+@app.route("/settings", methods=['GET', 'POST'])
 def settings():
     global config
+    if request.method == 'POST':
+        return "Einstellungen gespeichert"
+    else:
     #config.add_section('General')
     #config.set('General', 'refreshtime', '30')
     # Writing our configuration file to 'example.cfg'
