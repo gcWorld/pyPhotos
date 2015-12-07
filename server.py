@@ -8,7 +8,7 @@ import configparser
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
-config.read('settings.cfg')
+config.read('/home/pi/pyphotos/settings.cfg')
 
 ## Variable definition
 REFRESH_TIME=config['General']['refreshtime'] #in seconds
