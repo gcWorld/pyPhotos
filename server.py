@@ -4,6 +4,7 @@ import random
 import string
 import urllib
 from itertools import cycle
+import yaml
 app = Flask(__name__)
 
 ## Variable definition
@@ -130,8 +131,10 @@ def hello():
     
 @app.route("/settings")
 def settings():
+    config = yaml.safe_load(open("settings.yml"))
     templateData = {
-        'title' : "Einstellungen"
+        'title' : "Einstellungen",
+        'refreshtime' : config['refreshtime']
     }
     return render_template('settings.html', **templateData)
 
