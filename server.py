@@ -142,7 +142,7 @@ def settings():
         with open('settings.cfg', 'w') as configfile:
             config.write(configfile)
         templateData = {}
-        return render_template('settings-done.html', **templateData)
+        return render_template('settings-post.html', **templateData)
     else:
         #config.add_section('General')
         #config.set('General', 'refreshtime', '30')
