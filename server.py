@@ -138,7 +138,7 @@ def settings():
     config.set('General', 'refreshtime', '30')
     # Writing our configuration file to 'example.cfg'
     with open('settings.cfg', 'wb') as configfile:
-        configfile.write(bytes(config, 'UTF-8'))
+        configfile.write(config)
     templateData = {
         'title' : "Einstellungen"
         #'refreshtime' : config['refreshtime']
