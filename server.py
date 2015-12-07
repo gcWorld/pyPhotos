@@ -138,6 +138,9 @@ def settings():
     global config
     if request.method == 'POST':
         refreshtime = request.form['refreshtime']
+        config.set('General', 'refreshtime', refreshtime)
+        with open('settings.cfg', 'w') as configfile:
+            config.write(configfile)
         return "Einstellungen gespeichert: refresh time="+refreshtime
     else:
         #config.add_section('General')
