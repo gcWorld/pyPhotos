@@ -2,7 +2,9 @@
     <head>
         <title>{{title}}</title>
         <meta name="mobile-web-app-capable" content="yes">
+        <link href="../static/ss/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+        <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="{{ url_for('static', filename='css/settings.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -18,7 +20,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="refreshtime">Bildanzeige</label>  
   <div class="col-md-4">
-  <input id="refreshtime" name="refreshtime" type="text" value="{{ refreshtime }}" placeholder="30" class="form-control input-md" required="">
+  <input id="refreshtime" name="refreshtime" type="number" value="{{ refreshtime }}" placeholder="30" class="form-control input-md" required="">
   <span class="help-block">Sekunden</span>  
   </div>
 </div>
@@ -26,11 +28,82 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="refreshtime">Besondere Daten</label>  
   <div class="col-md-4">
-  <input id="specialdates" name="specialdates" type="checkbox" value="1" class="form-control" {{specialdates_checked}} required="">
+  <input id="specialdates" name="specialdates" type="checkbox" value="1" class="form-control" {{specialdates_checked}}>
   <span class="help-block">Geburtstage, Feiertage</span>  
   </div>
 </div>
 
+<legend>Zeitplan</legend>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="mon-on-1">Montag An/Aus</label>
+        <div class="col-md-2">
+            <input id="mon-on-1" name="mon-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="mon-off-1" name="mon-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="tue-on-1">Dienstag An/Aus</label>
+        <div class="col-md-2">
+            <input id="tue-on-1" name="tue-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="tue-off-1" name="tue-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="wed-on-1">Mittwoch An/Aus</label>
+        <div class="col-md-2">
+            <input id="wed-on-1" name="wed-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="wed-off-1" name="wed-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="thu-on-1">Donnerstag An/Aus</label>
+        <div class="col-md-2">
+            <input id="thu-on-1" name="thu-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="thu-off-1" name="thu-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="fri-on-1">Freitag An/Aus</label>
+        <div class="col-md-2">
+            <input id="fri-on-1" name="fri-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="fri-off-1" name="fri-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="sat-on-1">Samstag An/Aus</label>
+        <div class="col-md-2">
+            <input id="sat-on-1" name="sat-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="sat-off-1" name="sat-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="sun-on-1">Sonntag An/Aus</label>
+        <div class="col-md-2">
+            <input id="sun-on-1" name="sun-on-1" type="time" value="08:00" placeholder="08:00" class="form-control input-md">
+        </div>
+        <div class="col-md-2">
+            <input id="sun-off-1" name="sun-off-1" type="time" value="10:00" placeholder="10:00" class="form-control input-md">
+        </div>
+    </div>
+    
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
@@ -43,8 +116,6 @@
 </form>
 </div>
 </div>
-
-        <footer class="footer"><span class="time" id="date"></span><span class="album">{{album}}</span><span class="date">{{date}}</span></footer>
         <script src="{{ url_for('static', filename='js/jquery-2.0.1.min.js') }}"></script>
     </body>
 </html>

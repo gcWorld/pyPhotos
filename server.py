@@ -139,6 +139,20 @@ def settings():
     if request.method == 'POST':
         refreshtime = request.form['refreshtime']
         config.set('General', 'refreshtime', refreshtime)
+        config.set('Timetable', 'mon-on-1', request.form['mon-on-1'])
+        config.set('Timetable', 'mon-off-1', request.form['mon-off-1'])
+        config.set('Timetable', 'tue-on-1', request.form['tue-on-1'])
+        config.set('Timetable', 'tue-off-1', request.form['tue-off-1'])
+        config.set('Timetable', 'wed-on-1', request.form['wed-on-1'])
+        config.set('Timetable', 'wed-off-1', request.form['wed-off-1'])
+        config.set('Timetable', 'thu-on-1', request.form['thu-on-1'])
+        config.set('Timetable', 'thu-off-1', request.form['thu-off-1'])
+        config.set('Timetable', 'fri-on-1', request.form['fri-on-1'])
+        config.set('Timetable', 'fri-off-1', request.form['fri-off-1'])
+        config.set('Timetable', 'sat-on-1', request.form['sat-on-1'])
+        config.set('Timetable', 'sat-off-1', request.form['sat-off-1'])
+        config.set('Timetable', 'sun-on-1', request.form['sun-on-1'])
+        config.set('Timetable', 'sun-off-1', request.form['sun-off-1'])
         with open('settings.cfg', 'w') as configfile:
             config.write(configfile)
         templateData = {}
