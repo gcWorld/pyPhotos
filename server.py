@@ -136,6 +136,7 @@ def hello():
 @app.route("/settings", methods=['GET', 'POST'])
 def settings():
     global config
+    config.read('/home/pi/pyphotos/settings.cfg')
     if request.method == 'POST':
         refreshtime = request.form['refreshtime']
         config.set('General', 'refreshtime', refreshtime)
@@ -171,7 +172,21 @@ def settings():
             'title' : "Einstellungen",
             'refreshtime' : config['General']['refreshtime'],
             'specialdates' : config['General']['specialdates'],
-            'specialdates_checked' : specialdates_checked
+            'specialdates_checked' : specialdates_checked,
+            'mon-on-1' : config['Timetable']['mon-on-1'],
+            'mon-off-1' : config['Timetable']['mon-off-1'],
+            'tue-on-1' : config['Timetable']['tue-on-1'],
+            'tue-off-1' : config['Timetable']['tue-off-1'],
+            'wed-on-1' : config['Timetable']['wed-on-1'],
+            'wed-off-1' : config['Timetable']['wed-off-1'],
+            'thu-on-1' : config['Timetable']['thu-on-1'],
+            'thu-off-1' : config['Timetable']['thu-off-1'],
+            'fri-on-1' : config['Timetable']['fri-on-1'],
+            'fri-off-1' : config['Timetable']['fri-off-1'],
+            'sat-on-1' : config['Timetable']['sat-on-1'],
+            'sat-off-1' : config['Timetable']['sat-off-1'],
+            'sun-on-1' : config['Timetable']['sun-on-1'],
+            'sun-off-1' : config['Timetable']['sun-off-1'],
         }
         return render_template('settings.html', **templateData)
 
