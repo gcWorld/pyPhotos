@@ -7,6 +7,11 @@ from itertools import cycle
 import configparser
 app = Flask(__name__)
 
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(16, GPIO.IN)
+
 config = configparser.ConfigParser()
 config.read('/home/pi/pyphotos/settings.cfg')
 
@@ -42,6 +47,13 @@ from os.path import isfile, isdir, join
 
 folder = [x for x in listdir(mypath) if isdir(join(mypath,x))]
 #onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+def toggleDisplay():
+    GPIO.setup(16, GPIO.OUT, initial=1)
+    GPIO.output(16, 0)         # this is our simulated button press
+    sleep(0.2)                 # hold button for 0.2 seconds
+    GPIO.output(16, 1)         # release button
+    GPIO.setup(16, GPIO.IN)    # set port back to input (re-enables buttons)
 
 def checkDisplayTimetable():
     now = datetime.datetime.now()
@@ -80,9 +92,16 @@ def checkDisplayTimetable():
     istime = int(timeHour)*60 + int(timeMinute)
     
     if istime > ontime and istime < offtime:
-        return True
-    
-    return False
+        shouldBeOn = True
+    else:
+        shouldBeOn = False
+        
+    if shouldBeOn and not displayon
+        toggleDisplay()
+        displayon = True
+    elif not shouldBeOn and displayon
+        toggleDisplay()
+        displayon = False
 
 
 def albumName(name):
