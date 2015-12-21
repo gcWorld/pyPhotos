@@ -74,9 +74,15 @@ def checkDisplayTimetable():
     ontime = ontime.split(':')
     ontime = int(ontime[0])*60 + int(ontime[1])
     
+    offtime = offtime.split(':')
+    offtime = int(offtime[0])*60 + int(offtime[1])
+    
     istime = int(timeHour)*60 + int(timeMinute)
     
-    return str(ontime) + "|" + str(istime)
+    if istime > ontime and istime < offtime:
+        return True
+    
+    return False
 
 
 def albumName(name):
