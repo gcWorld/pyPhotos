@@ -18,6 +18,7 @@ bg = ""
 jfolder = ""
 picLen = 0
 picNum = 0
+displayon = True
 imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
@@ -41,6 +42,40 @@ from os.path import isfile, isdir, join
 
 folder = [x for x in listdir(mypath) if isdir(join(mypath,x))]
 #onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+def checkDisplayTimetable():
+    now = datetime.datetime.now()
+    timeWeekDay = now.strftime("%a")
+    timeHour = now.strftime("%H")
+    timeMinute = now.strftime("%M")
+    
+    if timeWeekDay == "Mon":
+        ontime = config['Timetable']['mon-on-1']
+        offtime = config['Timetable']['mon-off-1']
+    elif timeWeekDay == "Tue":
+        ontime = config['Timetable']['tue-on-1']
+        offtime = config['Timetable']['tue-off-1']
+    elif timeWeekDay == "Wed":
+        ontime = config['Timetable']['wed-on-1']
+        offtime = config['Timetable']['wed-off-1']
+    elif timeWeekDay == "Thu":
+        ontime = config['Timetable']['thu-on-1']
+        offtime = config['Timetable']['thu-off-1']
+    elif timeWeekDay == "Fri":
+        ontime = config['Timetable']['fri-on-1']
+        offtime = config['Timetable']['fri-off-1']
+    elif timeWeekDay == "Sat":
+        ontime = config['Timetable']['sat-on-1']
+        offtime = config['Timetable']['sat-off-1']
+    elif timeWeekDay == "Sun":
+        ontime = config['Timetable']['sun-on-1']
+        offtime = config['Timetable']['sun-off-1']
+    
+    ontime = ontime.split(':')
+    ontime = ontime[0]*60 + ontime[1]
+    
+    return ontime
+
 
 def albumName(name):
     newname = name.replace('_', ' ')
@@ -114,6 +149,9 @@ if timeMonth == "12":
 def hello():
     global jfolder
     global picLen, picNum, REFRESH_TIME
+    
+    display = checkDisplayTimetable()
+    
     if timeMonth == "12" and timeDay > 23 and timeDay < 27:
         bg, album, date = christmas()
     else:
@@ -127,7 +165,7 @@ def hello():
         'bg' : urllib.parse.urlparse(bg).geturl(),
         #'bg' : 'static/images/weihnachten/DSC_0338.JPG',
         #'images' : str(picNum)+'/'+str(picLen)+' '+bg,
-        'images' : "",
+        'images' : display,
         'refreshtime' : REFRESH_TIME,
         'album' : album
     }
