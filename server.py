@@ -104,6 +104,7 @@ def checkDisplayTimetable():
         toggleDisplay()
         displayon = False
 
+    return shouldBeOn
 
 def albumName(name):
     newname = name.replace('_', ' ')
