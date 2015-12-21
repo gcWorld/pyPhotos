@@ -72,7 +72,7 @@ def checkDisplayTimetable():
         offtime = config['Timetable']['sun-off-1']
     
     ontime = ontime.split(':')
-    ontime = ontime[0]*60 + ontime[1]
+    ontime = int(ontime[0])*60 + ontime[1]
     
     return ontime
 
