@@ -96,10 +96,10 @@ def checkDisplayTimetable():
     else:
         shouldBeOn = False
         
-    if shouldBeOn and not displayon
+    if shouldBeOn and not displayon:
         toggleDisplay()
         displayon = True
-    elif not shouldBeOn and displayon
+    elif not shouldBeOn and displayon:
         toggleDisplay()
         displayon = False
 
