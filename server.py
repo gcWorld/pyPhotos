@@ -56,6 +56,7 @@ def toggleDisplay():
     GPIO.setup(16, GPIO.IN)    # set port back to input (re-enables buttons)
 
 def checkDisplayTimetable():
+    global displayon
     now = datetime.datetime.now()
     timeWeekDay = now.strftime("%a")
     timeHour = now.strftime("%H")
