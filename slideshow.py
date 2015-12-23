@@ -118,8 +118,8 @@ def getImages(folder):
     global xcycle
     global picLen
     xfiles = [f for f in listdir(folder) if isfile(join(folder, f))]
-    for f in xfiles:
-        os.rename(f, f.replace(' ', '_'))
+    #for f in xfiles:
+    #    os.rename(f, f.replace(' ', '_'))
     xfiles.sort()
     picLen = len(xfiles)
     xcycle = cycle(xfiles)
@@ -189,7 +189,7 @@ def calculate_image_size(image):
     img = Image.open(image)  # Pillow Image Class Method (open).
     image_width, image_height = img.size
     if image_width > 1280 and image_height > 800:
-        #system("mogrify -resize 1280x800^ "+image)
+        system("mogrify -resize 1280x800^ "+image)
         img = Image.open(image)
     return img.size  # Pillow Image Class Attribute (size).
 # end calculate_image_size()
@@ -255,7 +255,7 @@ def display_image(image, screen, xy_coords):
     """
     img = pygame.image.load(image)  # Load the image file from disk.
     screen.blit(img, xy_coords)  # BLIT image to screen
-    pygame.display.flip()  # Update the screen.
+    
 # end display_image()
 
 def display_date(date, screen, myfont):
@@ -297,6 +297,7 @@ def play_slide_show(screen, screen_size, myfont):
 
     display_image(bg, screen, xy_coords)
     display_date(date, screen, myfont)
+    pygame.display.flip()  # Update the screen.
     sleep(30) 
     # Wait for number of seconds.
     clear_screen(screen)
