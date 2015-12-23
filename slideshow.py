@@ -258,7 +258,7 @@ def display_image(image, screen, xy_coords):
 
 def display_date(date, screen, myfont):
     label = myfont.render(date, 1, (255,255,0))
-    screen.blit(label, (5, 780)
+    screen.blit(label, (5, 780))
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
