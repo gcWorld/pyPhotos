@@ -4,7 +4,6 @@ import fnmatch
 import time
 import pygame
 from pygame.locals import *
-from Pillow import Image
 import datetime
 import random
 import string
