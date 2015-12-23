@@ -104,7 +104,7 @@ def checkDisplayTimetable():
         toggleDisplay()
         displayon = False
 
-    return shouldBeOn
+    return str(shouldBeOn)+" "+str(istime)+" "+str(offtime)
 
 def albumName(name):
     newname = name.replace('_', ' ')
@@ -203,7 +203,7 @@ def hello():
 @app.route("/settings", methods=['GET', 'POST'])
 def settings():
     global config
-    config.read('/home/pi/pyphotos/settings.cfg')
+    #config.read('/home/pi/pyphotos/settings.cfg')
     if request.method == 'POST':
         refreshtime = request.form['refreshtime']
         config.set('General', 'refreshtime', refreshtime)
