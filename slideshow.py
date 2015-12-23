@@ -286,7 +286,7 @@ def play_slide_show(screen, screen_size):
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
     display_image(bg, screen, xy_coords)
-    sleep(REFRESH_TIME) 
+    sleep(30) 
     # Wait for number of seconds.
     clear_screen(screen)
 
