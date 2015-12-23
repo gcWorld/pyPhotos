@@ -304,7 +304,7 @@ def main():
     pygame.init()
     screen_size = calculate_screen_size()
 
-    myfont = pygame.font.SysFont("Helvetica", 15)
+    myfont = pygame.font.SysFont("monospace", 20)
     # Create the pygame screen used to display images.
     # Displays slide show full screen.
     screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
