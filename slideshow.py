@@ -256,7 +256,7 @@ def display_image(image, screen, xy_coords):
     pygame.display.flip()  # Update the screen.
 # end display_image()
 
-def display_date(screen, date, myfont)
+def display_date(screen, date, myfont):
     label = myfont.render("Some text!", 1, (255,255,0))
     screen.blit(label, (100, 100))
 
