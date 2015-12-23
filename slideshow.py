@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request
+import os
+import sys
+import fnmatch
+import time
+import pygame
+from pygame.locals import *
+from Pillow import Image
 import datetime
 import random
 import string
 import urllib
 from itertools import cycle
 import configparser
-app = Flask(__name__)
 
 import RPi.GPIO as GPIO
 from time import sleep
@@ -173,9 +178,83 @@ timeDay = now.day
 
 if timeMonth == "12":
     xmas = True
+    
+def calculate_image_size(image):
+    """Calculates width and height of image in pixels.
+    Args:
+        image as string (path to image).
+    Returns:
+        tuple (int image width in pixels, int image height in pixels).
+    """
+    img = Image.open(image)  # Pillow Image Class Method (open).
+    return img.size  # Pillow Image Class Attribute (size).
+# end calculate_image_size()
 
-@app.route("/")
-def hello():
+
+def calculate_screen_size():
+    """Calculates width and height of screen in pixels.
+    Returns:
+        tuple (int screen width in pixels, int screen height in pixels).
+    """
+    return pygame.display.Info().current_w, pygame.display.Info().current_h
+# end calculate_screen_size()
+
+
+def calculate_xy_coords(image_size, screen_size):
+    """Calculates x and y coordinates used to display image centered on screen.
+    Args:
+        image_size as tuple (int width in pixels, int height in pixels).
+        screen_size as tuple (int width in pixels, int height in pixels).
+    Returns:
+        tuple (int x coordinate, int y coordinate).
+    """
+    image_width, image_height = image_size
+    screen_width, screen_height = screen_size
+    x = (screen_width - image_width) / 2
+    y = (screen_height - image_height) / 2
+    return (x, y)
+# end calculate_xy_coords()
+
+
+def check_for_quit():
+    """Quits the program if the user presses either the [ESC] key
+    or the [q] key.
+    Returns:
+        None.
+    """
+    for event in pygame.event.get():
+        if event.type == KEYDOWN and (event.key in [K_ESCAPE, K_q]):
+            pygame.display.quit()
+            pygame.quit()
+            sys.exit(0)
+# end check_for_quit()
+
+
+def clear_screen(screen):
+    """Clears the screen by filling it with black.
+    Args:
+        screen as object.
+    Returns:
+        None.
+    """
+    screen.fill([0, 0, 0])
+# end clear_screen()
+    
+def display_image(image, screen, xy_coords):
+    """Bit Block Transfers (displays) the image to screen.
+    Args:
+        image as string (path to image).
+        screen as object.
+        xy_coords as tuple (int x coordinate, int y coordinate). Specifies where to draw the image on screen.
+    Returns:
+        None.
+    """
+    img = pygame.image.load(image)  # Load the image file from disk.
+    screen.blit(img, xy_coords)  # BLIT image to screen
+    pygame.display.flip()  # Update the screen.
+# end display_image()
+
+def play_slide_show(screen, screen_size):
     global jfolder
     global picLen, picNum, REFRESH_TIME
     
@@ -186,8 +265,8 @@ def hello():
     else:
         bg, album, date = normal()
         
-    imagesshown.append(bg)
-    bg = bg.replace(' ','%20')
+    #imagesshown.append(bg)
+    #bg = bg.replace(' ','%20')
     templateData = {
         'title' : 'HELLO!',
         'date' : date,
@@ -198,64 +277,40 @@ def hello():
         'refreshtime' : REFRESH_TIME,
         'album' : album
     }
-    return render_template('index.html', **templateData)
     
-@app.route("/settings", methods=['GET', 'POST'])
-def settings():
-    global config
-    config.read('/home/pi/pyphotos/settings.cfg')
-    if request.method == 'POST':
-        refreshtime = request.form['refreshtime']
-        config.set('General', 'refreshtime', refreshtime)
-        config.set('Timetable', 'mon-on-1', request.form['mon-on-1'])
-        config.set('Timetable', 'mon-off-1', request.form['mon-off-1'])
-        config.set('Timetable', 'tue-on-1', request.form['tue-on-1'])
-        config.set('Timetable', 'tue-off-1', request.form['tue-off-1'])
-        config.set('Timetable', 'wed-on-1', request.form['wed-on-1'])
-        config.set('Timetable', 'wed-off-1', request.form['wed-off-1'])
-        config.set('Timetable', 'thu-on-1', request.form['thu-on-1'])
-        config.set('Timetable', 'thu-off-1', request.form['thu-off-1'])
-        config.set('Timetable', 'fri-on-1', request.form['fri-on-1'])
-        config.set('Timetable', 'fri-off-1', request.form['fri-off-1'])
-        config.set('Timetable', 'sat-on-1', request.form['sat-on-1'])
-        config.set('Timetable', 'sat-off-1', request.form['sat-off-1'])
-        config.set('Timetable', 'sun-on-1', request.form['sun-on-1'])
-        config.set('Timetable', 'sun-off-1', request.form['sun-off-1'])
-        with open('/home/pi/pyphotos/settings.cfg', 'w') as configfile:
-            config.write(configfile)
-        templateData = {}
-        return render_template('settings-post.html', **templateData)
-    else:
-        #config.add_section('General')
-        #config.set('General', 'refreshtime', '30')
-        # Writing our configuration file to 'example.cfg'
-        #with open('settings.cfg', 'w') as configfile:
-        #    config.write(configfile)
-        specialdates_checked = ""
-        if config['General']['specialdates']:
-            specialdates_checked = "checked='checked'"
-        
-        templateData = {
-            'title' : "Einstellungen",
-            'refreshtime' : config['General']['refreshtime'],
-            'specialdates' : config['General']['specialdates'],
-            'specialdates_checked' : specialdates_checked,
-            'monon1' : config['Timetable']['mon-on-1'],
-            'monoff1' : config['Timetable']['mon-off-1'],
-            'tueon1' : config['Timetable']['tue-on-1'],
-            'tueoff1' : config['Timetable']['tue-off-1'],
-            'wedon1' : config['Timetable']['wed-on-1'],
-            'wedoff1' : config['Timetable']['wed-off-1'],
-            'thuon1' : config['Timetable']['thu-on-1'],
-            'thuoff1' : config['Timetable']['thu-off-1'],
-            'frion1' : config['Timetable']['fri-on-1'],
-            'frioff1' : config['Timetable']['fri-off-1'],
-            'saton1' : config['Timetable']['sat-on-1'],
-            'satoff1' : config['Timetable']['sat-off-1'],
-            'sunon1' : config['Timetable']['sun-on-1'],
-            'sunoff1' : config['Timetable']['sun-off-1'],
-        }
-        return render_template('settings.html', **templateData)
+    check_for_quit()
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    #image = slide_show_path + image_list[image_list_index]  # Create the path to the image.
+
+    image_size = calculate_image_size(bg)
+
+    # Calculate xy coordinates used to display image centered on screen.
+    xy_coords = calculate_xy_coords(image_size, screen_size)
+
+    display_image(bg, screen, xy_coords)
+    time.sleep(REFRESH_TIME) # Wait for number of seconds.
+    clear_screen(screen)
+
+def main():
+
+    pygame.init()
+    screen_size = calculate_screen_size()
+
+    # Create the pygame screen used to display images.
+    # Displays slide show full screen.
+    screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
+
+    # Create the pygame screen used to display images.
+    # Displays slide show in screen_size window instead of full screen.
+    #    screen = pygame.display.set_mode(screen_size)
+
+    pygame.mouse.set_visible(0)  # Hide the mouse cursor.
+
+    while True:
+
+        play_slide_show(screen, screen_size)
+
+# end main()
+
+if __name__ == '__main__':
+    main()
