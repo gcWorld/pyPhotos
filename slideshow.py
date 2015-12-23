@@ -256,7 +256,11 @@ def display_image(image, screen, xy_coords):
     pygame.display.flip()  # Update the screen.
 # end display_image()
 
-def play_slide_show(screen, screen_size):
+def display_date(screen, date, myfont)
+    label = myfont.render("Some text!", 1, (255,255,0))
+    screen.blit(label, (100, 100))
+
+def play_slide_show(screen, screen_size, myfont):
     global jfolder
     global picLen, picNum, REFRESH_TIME
     
@@ -289,6 +293,8 @@ def play_slide_show(screen, screen_size):
     # Calculate xy coordinates used to display image centered on screen.
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
+    display_date(date, screen, myfont)
+
     display_image(bg, screen, xy_coords)
     sleep(30) 
     # Wait for number of seconds.
@@ -299,6 +305,7 @@ def main():
     pygame.init()
     screen_size = calculate_screen_size()
 
+    myfont = pygame.font.SysFont("Helvetica", 15)
     # Create the pygame screen used to display images.
     # Displays slide show full screen.
     screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
@@ -311,7 +318,7 @@ def main():
 
     while True:
 
-        play_slide_show(screen, screen_size)
+        play_slide_show(screen, screen_size, myfont)
 
 # end main()
 
