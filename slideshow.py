@@ -186,7 +186,7 @@ def calculate_image_size(image):
     """
     img = Image.open(image)  # Pillow Image Class Method (open).
     image_width, image_height = img.size
-    if image_width > 1280 or image_height > 800:
+    if image_width > 1280 and image_height > 800:
         system("mogrify -resize 1280x800^ "+image)
         img = Image.open(image)
     return img.size  # Pillow Image Class Attribute (size).
@@ -293,9 +293,8 @@ def play_slide_show(screen, screen_size, myfont):
     # Calculate xy coordinates used to display image centered on screen.
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
-    display_date(date, screen, myfont)
-
     display_image(bg, screen, xy_coords)
+    display_date(date, screen, myfont)
     sleep(30) 
     # Wait for number of seconds.
     clear_screen(screen)
