@@ -296,7 +296,7 @@ def play_slide_show(screen, screen_size, myfont):
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
     display_image(bg, screen, xy_coords)
-    display_date(date, screen, myfont)
+    #display_date(date, screen, myfont)
     pygame.display.flip()  # Update the screen.
     sleep(30) 
     # Wait for number of seconds.
