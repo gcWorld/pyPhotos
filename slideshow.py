@@ -187,7 +187,7 @@ def calculate_image_size(image):
     img = Image.open(image)  # Pillow Image Class Method (open).
     image_width, image_height = img.size
     if image_width > 1280 and image_height > 800:
-        system('mogrify -resize 1280x800^ "'+image+'"')
+        system("mogrify -resize 1280x800^ '"+image+"'")
         img = Image.open(image)
     return img.size  # Pillow Image Class Attribute (size).
 # end calculate_image_size()
