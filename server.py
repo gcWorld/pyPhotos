@@ -221,7 +221,7 @@ def settings():
         config.set('Timetable', 'sat-off-1', request.form['sat-off-1'])
         config.set('Timetable', 'sun-on-1', request.form['sun-on-1'])
         config.set('Timetable', 'sun-off-1', request.form['sun-off-1'])
-        with open('settings.cfg', 'w') as configfile:
+        with open('/home/pi/pyphotos/settings.cfg', 'w') as configfile:
             config.write(configfile)
         templateData = {}
         return render_template('settings-post.html', **templateData)
