@@ -256,9 +256,9 @@ def display_image(image, screen, xy_coords):
     pygame.display.flip()  # Update the screen.
 # end display_image()
 
-def display_date(screen, date, myfont):
-    label = myfont.render("Some text!", 1, (255,255,0))
-    screen.blit(label, (100, 100))
+def display_date(date, screen, myfont):
+    label = myfont.render(date, 1, (255,255,0))
+    screen.blit(label, (5, 780)
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
