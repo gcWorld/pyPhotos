@@ -118,6 +118,8 @@ def getImages(folder):
     global xcycle
     global picLen
     xfiles = [f for f in listdir(folder) if isfile(join(folder, f))]
+    for f in xfiles:
+        os.rename(f, f.replace(' ', '_'))
     xfiles.sort()
     picLen = len(xfiles)
     xcycle = cycle(xfiles)
