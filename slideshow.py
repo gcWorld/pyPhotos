@@ -257,11 +257,15 @@ def display_image(image, screen, xy_coords):
     img = pygame.image.load(image)  # Load the image file from disk.
     screen.blit(img, xy_coords)  # BLIT image to screen
     
+    imgbg = pygame.image.load("/home/pi/pyphotos/static/img/bg.png")
+    screen.blit(imgbg, 0, 700)
+    
 # end display_image()
 
 def display_date(date, screen, myfont, album):
     datetaken = myfont[0].render(date, 1, (250,250,250))
-    screen.blit(datetaken, (1195, 770))
+    daterect = datetaken.get_rect()
+    screen.blit(datetaken, (1270-daterect.width, 770))
 
     now = datetime.datetime.now()
     datestring = now.strftime("%A, %d. %B")
@@ -271,7 +275,7 @@ def display_date(date, screen, myfont, album):
     
     albumtext = myfont[1].render(album, 1, (250,250,250))
     albumrect = albumtext.get_rect()
-    screen.blit(albumtext, (1275-albumrect.width,740))
+    screen.blit(albumtext, (1270-albumrect.width,740))
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
