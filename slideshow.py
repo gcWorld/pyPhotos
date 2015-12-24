@@ -16,6 +16,8 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.IN)
 
+locale.setlocale(locale.LC_ALL, 'de_DE')
+
 config = configparser.ConfigParser()
 config.read('/home/pi/pyphotos/settings.cfg')
 
@@ -257,7 +259,7 @@ def display_image(image, screen, xy_coords):
     img = pygame.image.load(image)  # Load the image file from disk.
     screen.blit(img, xy_coords)  # BLIT image to screen
     
-    imgbg = pygame.image.load("/home/pi/pyphotos/static/img/bg.png")
+    imgbg = pygame.image.load("/home/pi/pyphotos/static/img/bg.png").convert_alpha()
     screen.blit(imgbg, (0, 700))
     
 # end display_image()
