@@ -259,8 +259,8 @@ def display_image(image, screen, xy_coords):
 # end display_image()
 
 def display_date(date, screen, myfont):
-    label = myfont.render("Hello!", 1, (255,255,0))
-    screen.blit(label, (5, 780))
+    label = myfont.render(date, 1, (250,250,250))
+    screen.blit(label, (5, 770))
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
@@ -307,7 +307,7 @@ def main():
     pygame.init()
     screen_size = calculate_screen_size()
 
-    myfont = pygame.font.SysFont("Helvetica", 15)
+    myfont = pygame.font.SysFont("Helvetica", 25)
     # Create the pygame screen used to display images.
     # Displays slide show full screen.
     screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
