@@ -176,8 +176,8 @@ timeString = now.strftime("%d %m %Y")
 timeMonth = now.strftime("%m")
 timeDay = now.day
 
-if timeMonth == "12":
-    xmas = True
+#if timeMonth == "12":
+#    xmas = True
     
 def calculate_image_size(image):
     """Calculates width and height of image in pixels.
@@ -268,10 +268,10 @@ def play_slide_show(screen, screen_size, myfont):
     
     display = checkDisplayTimetable()
     
-    if timeMonth == "12" and timeDay > 23 and timeDay < 27:
-        bg, album, date = christmas()
-    else:
-        bg, album, date = normal()
+    #if timeMonth == "12" and timeDay > 23 and timeDay < 27:
+    #    bg, album, date = christmas()
+    #else:
+    bg, album, date = normal()
         
     #imagesshown.append(bg)
     #bg = bg.replace(' ','%20')
