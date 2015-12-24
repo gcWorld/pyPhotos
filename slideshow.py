@@ -64,29 +64,29 @@ def toggleDisplay():
 def checkDisplayTimetable():
     global displayon
     now = datetime.datetime.now()
-    timeWeekDay = now.strftime("%a")
+    timeWeekDay = now.strftime("%A")
     timeHour = now.strftime("%H")
     timeMinute = now.strftime("%M")
     
-    if timeWeekDay == "Mon":
+    if timeWeekDay == "Montag":
         ontime = config['Timetable']['mon-on-1']
         offtime = config['Timetable']['mon-off-1']
-    elif timeWeekDay == "Tue":
+    elif timeWeekDay == "Dienstag":
         ontime = config['Timetable']['tue-on-1']
         offtime = config['Timetable']['tue-off-1']
-    elif timeWeekDay == "Wed":
+    elif timeWeekDay == "Mittwoch":
         ontime = config['Timetable']['wed-on-1']
         offtime = config['Timetable']['wed-off-1']
-    elif timeWeekDay == "Thu":
+    elif timeWeekDay == "Donnerstag":
         ontime = config['Timetable']['thu-on-1']
         offtime = config['Timetable']['thu-off-1']
-    elif timeWeekDay == "Fri":
+    elif timeWeekDay == "Freitag":
         ontime = config['Timetable']['fri-on-1']
         offtime = config['Timetable']['fri-off-1']
-    elif timeWeekDay == "Sat":
+    elif timeWeekDay == "Samstag":
         ontime = config['Timetable']['sat-on-1']
         offtime = config['Timetable']['sat-off-1']
-    elif timeWeekDay == "Sun":
+    elif timeWeekDay == "Sonntag":
         ontime = config['Timetable']['sun-on-1']
         offtime = config['Timetable']['sun-off-1']
     
