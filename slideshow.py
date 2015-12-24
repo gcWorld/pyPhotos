@@ -9,6 +9,7 @@ import string
 import urllib
 from itertools import cycle
 import configparser
+import locale
 
 import RPi.GPIO as GPIO
 from time import sleep
@@ -260,10 +261,12 @@ def display_image(image, screen, xy_coords):
 
 def display_date(date, screen, myfont):
     datetaken = myfont[0].render(date, 1, (250,250,250))
-    screen.blit(datetaken, (5, 770))
+    screen.blit(datetaken, (1200, 770))
+
+    now = datetime.datetime.now()
+    datestring = now.strftime("%A, %d.%m")
     
-    
-    date = myfont[1].render(, 1, (250,250,250))
+    date = myfont[1].render(datestring, 1, (250,250,250))
     screen.blit(date, (10,760))
 
 def play_slide_show(screen, screen_size, myfont):
