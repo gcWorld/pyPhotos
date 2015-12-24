@@ -16,7 +16,7 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.IN)
 
-locale.setlocale(locale.LC_ALL, 'de_DE')
+locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
 
 config = configparser.ConfigParser()
 config.read('/home/pi/pyphotos/settings.cfg')
