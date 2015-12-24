@@ -259,15 +259,18 @@ def display_image(image, screen, xy_coords):
     
 # end display_image()
 
-def display_date(date, screen, myfont):
+def display_date(date, screen, myfont, album):
     datetaken = myfont[0].render(date, 1, (250,250,250))
-    screen.blit(datetaken, (1200, 770))
+    screen.blit(datetaken, (1195, 770))
 
     now = datetime.datetime.now()
-    datestring = now.strftime("%A, %d.%m")
+    datestring = now.strftime("%A, %d. %B")
     
     date = myfont[1].render(datestring, 1, (250,250,250))
     screen.blit(date, (10,760))
+    
+    albumtext = myfont[1].render(album, 1, (250,250,250))
+    screen.blit(albumtext, (1195,740))
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
@@ -303,7 +306,7 @@ def play_slide_show(screen, screen_size, myfont):
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
     display_image(path, screen, xy_coords)
-    display_date(date, screen, myfont)
+    display_date(date, screen, myfont, album)
     pygame.display.flip()  # Update the screen.
     sleep(30) 
     # Wait for number of seconds.
