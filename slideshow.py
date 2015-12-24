@@ -258,7 +258,7 @@ def display_image(image, screen, xy_coords):
     screen.blit(img, xy_coords)  # BLIT image to screen
     
     imgbg = pygame.image.load("/home/pi/pyphotos/static/img/bg.png")
-    screen.blit(imgbg, 0, 700)
+    screen.blit(imgbg, (0, 700))
     
 # end display_image()
 
