@@ -168,7 +168,7 @@ def normal():
     #        break
     
     date = get_date_taken(jfolder+'/'+bg)
-    return 'static/images/'+currentfolder+'/'+bg, albumName(currentfolder), date
+    return 'static/images/'+currentfolder+'/'+bg, albumName(currentfolder), date, jfolder+'/'+bg
 
 ## Get date and check for special dates (christmas etc)
 now = datetime.datetime.now()
@@ -271,7 +271,7 @@ def play_slide_show(screen, screen_size, myfont):
     #if timeMonth == "12" and timeDay > 23 and timeDay < 27:
     #    bg, album, date = christmas()
     #else:
-    bg, album, date = normal()
+    bg, album, date, path = normal()
         
     #imagesshown.append(bg)
     #bg = bg.replace(' ','%20')
@@ -290,13 +290,13 @@ def play_slide_show(screen, screen_size, myfont):
 
     #image = slide_show_path + image_list[image_list_index]  # Create the path to the image.
 
-    image_size = calculate_image_size(bg)
+    image_size = calculate_image_size(path)
 
     # Calculate xy coordinates used to display image centered on screen.
     xy_coords = calculate_xy_coords(image_size, screen_size)
 
-    display_image(bg, screen, xy_coords)
-    #display_date(date, screen, myfont)
+    display_image(path, screen, xy_coords)
+    display_date(date, screen, myfont)
     pygame.display.flip()  # Update the screen.
     sleep(30) 
     # Wait for number of seconds.
