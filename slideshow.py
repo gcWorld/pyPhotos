@@ -270,7 +270,8 @@ def display_date(date, screen, myfont, album):
     screen.blit(date, (10,760))
     
     albumtext = myfont[1].render(album, 1, (250,250,250))
-    screen.blit(albumtext, (1195,740))
+    albumrect = albumtext.get_rect()
+    screen.blit(albumtext, (1275-albumrect.width,740))
 
 def play_slide_show(screen, screen_size, myfont):
     global jfolder
