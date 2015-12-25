@@ -1,5 +1,7 @@
 # pyPhotos
-python script for displaying image slideshows in a browser
+python script for displaying image slideshows.
+
+Parts of the program have been taken from the charles-vomacka/Slideshow project
 
 #License
 
