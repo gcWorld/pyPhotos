@@ -23,7 +23,7 @@ imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
 
-@app.route("/settings", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def settings():
     global config
     config.read('/home/pi/pyphotos/settings.cfg')
