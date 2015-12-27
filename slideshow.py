@@ -315,7 +315,7 @@ def play_slide_show(screen, screen_size, myfont):
     display_image(path, screen, xy_coords)
     display_date(date, screen, myfont, album)
     pygame.display.flip()  # Update the screen.
-    sleep(REFRESH_TIME) 
+    sleep(float(REFRESH_TIME)) 
     # Wait for number of seconds.
     clear_screen(screen)
 
