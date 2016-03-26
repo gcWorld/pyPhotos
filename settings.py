@@ -23,11 +23,11 @@ imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
     
-@app.route("api/off", methods=['GET'])
+@app.route("/api/off", methods=['GET'])
 def monitoroff():
     return "off"
     
-@app.route("api/on", methods=['GET'])
+@app.route("/api/on", methods=['GET'])
 def monitoron():
     return "on"
 
