@@ -11,10 +11,10 @@ from itertools import cycle
 import configparser
 import locale
 
-import RPi.GPIO as GPIO
-from time import sleep
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(16, GPIO.IN)
+#import RPi.GPIO as GPIO
+#from time import sleep
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setup(16, GPIO.IN)
 
 locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
 
@@ -29,7 +29,7 @@ bg = ""
 jfolder = ""
 picLen = 0
 picNum = 0
-displayon = True
+#displayon = True
 imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
@@ -54,63 +54,63 @@ from os.path import isfile, isdir, join
 folder = [x for x in listdir(mypath) if isdir(join(mypath,x))]
 #onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-def toggleDisplay():
-    GPIO.setup(16, GPIO.OUT, initial=1)
-    GPIO.output(16, 0)         # this is our simulated button press
-    sleep(0.2)                 # hold button for 0.2 seconds
-    GPIO.output(16, 1)         # release button
-    GPIO.setup(16, GPIO.IN)    # set port back to input (re-enables buttons)
+#def toggleDisplay():
+#    GPIO.setup(16, GPIO.OUT, initial=1)
+#    GPIO.output(16, 0)         # this is our simulated button press
+#    sleep(0.2)                 # hold button for 0.2 seconds
+#    GPIO.output(16, 1)         # release button
+#    GPIO.setup(16, GPIO.IN)    # set port back to input (re-enables buttons)
 
-def checkDisplayTimetable():
-    global displayon
-    now = datetime.datetime.now()
-    timeWeekDay = now.strftime("%A")
-    timeHour = now.strftime("%H")
-    timeMinute = now.strftime("%M")
+#def checkDisplayTimetable():
+#    global displayon
+#    now = datetime.datetime.now()
+#    timeWeekDay = now.strftime("%A")
+#    timeHour = now.strftime("%H")
+#    timeMinute = now.strftime("%M")
+#    
+#    if timeWeekDay == "Montag":
+#        ontime = config['Timetable']['mon-on-1']
+#        offtime = config['Timetable']['mon-off-1']
+#    elif timeWeekDay == "Dienstag":
+#        ontime = config['Timetable']['tue-on-1']
+#        offtime = config['Timetable']['tue-off-1']
+#    elif timeWeekDay == "Mittwoch":
+#        ontime = config['Timetable']['wed-on-1']
+#        offtime = config['Timetable']['wed-off-1']
+#    elif timeWeekDay == "Donnerstag":
+#        ontime = config['Timetable']['thu-on-1']
+#        offtime = config['Timetable']['thu-off-1']
+#    elif timeWeekDay == "Freitag":
+#        ontime = config['Timetable']['fri-on-1']
+#        offtime = config['Timetable']['fri-off-1']
+#    elif timeWeekDay == "Samstag":
+#        ontime = config['Timetable']['sat-on-1']
+#        offtime = config['Timetable']['sat-off-1']
+#    elif timeWeekDay == "Sonntag":
+#        ontime = config['Timetable']['sun-on-1']
+#        offtime = config['Timetable']['sun-off-1']
     
-    if timeWeekDay == "Montag":
-        ontime = config['Timetable']['mon-on-1']
-        offtime = config['Timetable']['mon-off-1']
-    elif timeWeekDay == "Dienstag":
-        ontime = config['Timetable']['tue-on-1']
-        offtime = config['Timetable']['tue-off-1']
-    elif timeWeekDay == "Mittwoch":
-        ontime = config['Timetable']['wed-on-1']
-        offtime = config['Timetable']['wed-off-1']
-    elif timeWeekDay == "Donnerstag":
-        ontime = config['Timetable']['thu-on-1']
-        offtime = config['Timetable']['thu-off-1']
-    elif timeWeekDay == "Freitag":
-        ontime = config['Timetable']['fri-on-1']
-        offtime = config['Timetable']['fri-off-1']
-    elif timeWeekDay == "Samstag":
-        ontime = config['Timetable']['sat-on-1']
-        offtime = config['Timetable']['sat-off-1']
-    elif timeWeekDay == "Sonntag":
-        ontime = config['Timetable']['sun-on-1']
-        offtime = config['Timetable']['sun-off-1']
+#    ontime = ontime.split(':')
+#    ontime = int(ontime[0])*60 + int(ontime[1])
     
-    ontime = ontime.split(':')
-    ontime = int(ontime[0])*60 + int(ontime[1])
+#    offtime = offtime.split(':')
+#    offtime = int(offtime[0])*60 + int(offtime[1])
     
-    offtime = offtime.split(':')
-    offtime = int(offtime[0])*60 + int(offtime[1])
+#    istime = int(timeHour)*60 + int(timeMinute)
     
-    istime = int(timeHour)*60 + int(timeMinute)
-    
-    if istime > ontime and istime < offtime:
-        shouldBeOn = True
-    else:
-        shouldBeOn = False
+#    if istime > ontime and istime < offtime:
+#        shouldBeOn = True
+#    else:
+#        shouldBeOn = False
         
-    if shouldBeOn and not displayon:
-        toggleDisplay()
-        displayon = True
-    elif not shouldBeOn and displayon:
-        toggleDisplay()
-        displayon = False
+#    if shouldBeOn and not displayon:
+#        toggleDisplay()
+#        displayon = True
+#    elif not shouldBeOn and displayon:
+#        toggleDisplay()
+#        displayon = False
 
-    return str(shouldBeOn)+" "+str(istime)+" "+str(offtime)
+#    return str(shouldBeOn)+" "+str(istime)+" "+str(offtime)
 
 def albumName(name):
     newname = name.replace('_', ' ')
@@ -283,7 +283,7 @@ def play_slide_show(screen, screen_size, myfont):
     global jfolder
     global picLen, picNum, REFRESH_TIME
     
-    display = checkDisplayTimetable()
+    #display = checkDisplayTimetable()
     
     #if timeMonth == "12" and timeDay > 23 and timeDay < 27:
     #    bg, album, date = christmas()
@@ -298,7 +298,7 @@ def play_slide_show(screen, screen_size, myfont):
         'bg' : urllib.parse.urlparse(bg).geturl(),
         #'bg' : 'static/images/weihnachten/DSC_0338.JPG',
         #'images' : str(picNum)+'/'+str(picLen)+' '+bg,
-        'images' : display,
+    #    'images' : display,
         'refreshtime' : REFRESH_TIME,
         'album' : album
     }
