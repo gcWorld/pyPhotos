@@ -22,6 +22,14 @@ displayon = True
 imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
+    
+@app.route("api/off", methods=['GET'])
+def monitoroff():
+    return "off"
+    
+@app.route("api/on", methods=['GET'])
+def monitoron():
+    return "on"
 
 @app.route("/", methods=['GET', 'POST'])
 def settings():
