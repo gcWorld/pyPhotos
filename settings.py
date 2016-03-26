@@ -5,6 +5,11 @@ import string
 import urllib
 from itertools import cycle
 import configparser
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(16, GPIO.IN)
+
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
