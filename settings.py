@@ -28,12 +28,27 @@ imagesshown = []
 mypath = '/home/pi/pyphotos/static/images'
     
     
+def toggleDisplay():
+    GPIO.setup(16, GPIO.OUT, initial=1)
+    GPIO.output(16, 0)         # this is our simulated button press
+    sleep(0.2)                 # hold button for 0.2 seconds
+    GPIO.output(16, 1)         # release button
+    GPIO.setup(16, GPIO.IN)    # set port back to input (re-enables buttons)
+    
 @app.route("/api/off", methods=['GET'])
 def monitoroff():
+    global displayon
+    if displayon:
+        toggleDisplay()
+        displayon = False
     return "off"
     
 @app.route("/api/on", methods=['GET'])
 def monitoron():
+    global displayon
+    if not displayon:
+        toggleDisplay()
+        displayon = True
     return "on"
 
 @app.route("/", methods=['GET', 'POST'])
