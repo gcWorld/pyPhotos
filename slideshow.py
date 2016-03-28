@@ -12,7 +12,9 @@ import configparser
 import locale
 
 #import RPi.GPIO as GPIO
-#from time import sleep
+
+from time import sleep
+
 #GPIO.setmode(GPIO.BCM)
 #GPIO.setup(16, GPIO.IN)
 
